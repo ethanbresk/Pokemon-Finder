@@ -20,6 +20,8 @@ import {
 import axios from "axios";
 import {useState, useEffect} from 'react';
 
+const base_url = 'http://localhost:8000'
+
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
@@ -34,7 +36,7 @@ export default function Register() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     setRegisterLoading(true)
-    axios.get('http://localhost:8000/register/', { params: { username: data.get('username'), password: data.get('password') }})
+    axios.get(base_url+'/register/', { params: { username: data.get('username'), password: data.get('password') }})
     .then(res => {
       console.log(res.data)
       if (res.data.success) {

@@ -19,6 +19,7 @@ import axios from "axios";
 import {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 
+const base_url = 'http://localhost:8000'
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -34,7 +35,7 @@ export default function Login() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    axios.get('http://localhost:8000/login/', { params: { username: data.get('username'), password: data.get('password') }})
+    axios.get(base_url+'/login/', { params: { username: data.get('username'), password: data.get('password') }})
     .then(res => {
       if (res.data.success) {
         localStorage.setItem('user', res.data.username)

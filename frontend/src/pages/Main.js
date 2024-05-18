@@ -61,6 +61,8 @@ const ratingRefs = {}
 const drawerWidth = 240;
 const defaultTheme = createTheme()
 
+const base_url = 'http://localhost:8000'
+
 export default function Main() {
   const [user, setUser] = useState();
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -70,7 +72,7 @@ export default function Main() {
     const loggedInUser = localStorage.getItem("user");
     const currentToken = localStorage.getItem("token");
     if (loggedInUser) {
-      axios.get('http://localhost:8000/check-auth/', { params: { username: loggedInUser, token: currentToken }})
+      axios.get(base_url+'/check-auth/', { params: { username: loggedInUser, token: currentToken }})
       .then (res => {
         if (res.data.is_authenticated === 'true') {
           setUser(loggedInUser)
@@ -84,7 +86,7 @@ export default function Main() {
     event.preventDefault();
     const loggedInUser = localStorage.getItem("user");
 
-    axios.get('http://localhost:8000/logout/', { params: { username: loggedInUser }})
+    axios.get(base_url+'/logout/', { params: { username: loggedInUser }})
     .then(res => {
         if (res.data.success) {
             localStorage.clear()
@@ -145,7 +147,7 @@ export default function Main() {
     event.preventDefault();
     const loggedInUser = localStorage.getItem("user");
 
-    axios.get('http://localhost:8000/favorite-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
+    axios.get(base_url+'/favorite-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
     .then(res => {
         if (res.data.success) {
             const current_rating = ratingRefs[identifier]
@@ -162,7 +164,7 @@ export default function Main() {
     event.preventDefault();
     const loggedInUser = localStorage.getItem("user");
 
-    axios.get('http://localhost:8000/favorite-uploaded-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
+    axios.get(base_url+'/favorite-uploaded-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
     .then(res => {
         if (res.data.success) {
             const current_rating = ratingRefs[identifier]
@@ -183,7 +185,7 @@ export default function Main() {
     if (isAuthenticated) {
       const loggedInUser = localStorage.getItem("user");
 
-      axios.get('http://localhost:8000/get-pokemon/', { params: { username: loggedInUser }})
+      axios.get(base_url+'/get-pokemon/', { params: { username: loggedInUser }})
       .then(res => {
           if (res.data) {
             const data = res.data
@@ -217,7 +219,7 @@ export default function Main() {
     event.preventDefault();
     const loggedInUser = localStorage.getItem("user");
 
-    axios.get('http://localhost:8000/delete-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
+    axios.get(base_url+'/delete-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
     .then(res => {
         if (res.data.success) {
             setPokemonDeleted(true)
@@ -229,7 +231,7 @@ export default function Main() {
     event.preventDefault();
     const loggedInUser = localStorage.getItem("user");
 
-    axios.get('http://localhost:8000/delete-uploaded-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
+    axios.get(base_url+'/delete-uploaded-pokemon/', { params: { username: loggedInUser, pokemon_identifier: identifier }})
     .then(res => {
         if (res.data.success) {
             setPokemonDeletedTwo(true)
@@ -251,7 +253,7 @@ export default function Main() {
     if (isAuthenticated) {
       const loggedInUser = localStorage.getItem("user");
 
-      axios.get('http://localhost:8000/get-uploaded-pokemon/', { params: { username: loggedInUser }})
+      axios.get(base_url+'/get-uploaded-pokemon/', { params: { username: loggedInUser }})
       .then(res => {
           if (res.data) {
             const data = res.data
@@ -578,7 +580,7 @@ export default function Main() {
               behaviour={"replace"}
               header={false}
               uploadConfig={{
-                  url: `http://localhost:8000/upload-pokemon/?username=${localStorage.getItem("user")}`,
+                  url: base_url+`/upload-pokemon/?username=${localStorage.getItem("user")}`,
                   method: "POST",
                   uploadLabel: "file"
               }}
