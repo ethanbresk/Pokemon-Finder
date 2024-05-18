@@ -8096,3 +8096,4 @@ TypeError: the JSON object must be str, bytes or bytearray, not list
 2024-05-18 07:14:49,358 (INFO)- django.utils.autoreload- Watching for file changes with StatReloader
 2024-05-18 07:43:16,076 (WARNING)- users.views- /app/backend/users/../generated-pokemon
 2024-05-18 07:55:56,081 (INFO)- django.utils.autoreload- Watching for file changes with StatReloader
+2024-05-18 09:16:38,876 (INFO)- django.utils.autoreload- Watching for file changes with StatReloader
