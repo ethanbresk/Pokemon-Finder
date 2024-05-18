@@ -1,2 +1,10 @@
 frontend/node_modules
 .DS_Store
+backend/general.log
+data/db/base/13823/pg_internal.init
+data/db/global/pg_control
+data/db/global/pg_internal.init
+data/db/pg_stat/db_0.stat
+data/db/pg_stat/db_13823.stat
+data/db/pg_stat/global.stat
+data/db/pg_wal/000000010000000000000006
