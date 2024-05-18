@@ -19,6 +19,7 @@ import Container from '@mui/material/Container';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import background from "../background.gif";
 import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import MapIcon from '@mui/icons-material/Map';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {
   BrowserRouter as Router,
@@ -294,6 +295,20 @@ export default function Main() {
   const popoverOpen = Boolean(anchorEl);
   const popoverId = popoverOpen ? 'simple-popover' : undefined;
 
+  // map popover
+  const [anchorElTwo, setAnchorElTwo] = React.useState(null);
+
+  const handlePopoverTwo = (event) => {
+    setAnchorElTwo(event.currentTarget);
+  };
+
+  const handlePopoverCloseTwo = () => {
+    setAnchorElTwo(null);
+  };
+
+  const popoverOpenTwo = Boolean(anchorElTwo);
+  const popoverIdTwo = popoverOpenTwo ? 'simple-popover' : undefined;
+
   const [files, setFiles] = React.useState([]);
 
   const updateFiles = (incommingFiles) => {
@@ -409,6 +424,47 @@ export default function Main() {
     markers.push(new_marker)
   };
 
+  const [tileLayerUrl, setTileLayerUrl] = useState("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+
+  // base map
+  const handleTileOne = () => {
+    setTileLayerUrl("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+  }
+  // topo map
+  const handleTileTwo = () => {
+    setTileLayerUrl("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png")
+  }
+  // satellite map
+  const handleTileThree = () => {
+    setTileLayerUrl("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}")
+  }
+  // terrain map
+  const handleTileFour = () => {
+    setTileLayerUrl("https://tiles.stadiamaps.com/tiles/stamen_terrain_background/{z}/{x}/{y}{r}.png")
+  }
+  // light map
+  const handleTileFive = () => {
+    setTileLayerUrl("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png")
+  }
+  // dark map
+  const handleTileSix = () => {
+    setTileLayerUrl("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png")
+  }
+  // simple map
+  const handleTileSeven = () => {
+    setTileLayerUrl("https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}")
+    
+  }
+  const handleTileEight = () => {
+    setTileLayerUrl("https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png")
+  }
+  const handleTileNine = () => {
+    setTileLayerUrl("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+  }
+  const handleTileTen = () => {
+    setTileLayerUrl("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+  }
+
   const drawer = (
     <div>
       <List>
@@ -430,7 +486,61 @@ export default function Main() {
           </ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItemButton>
-        <ListItemButton aria-describedby={popoverId} onClick={handlePopover} >
+        <ListItemButton aria-describedby={popoverIdTwo} onClick={handlePopoverTwo}>
+          <ListItemIcon>
+            <MapIcon />
+          </ListItemIcon>
+          <ListItemText primary="Change Map Layer" />
+        </ListItemButton>
+        <Popover
+        id={popoverIdTwo}
+        open={popoverOpenTwo}
+        anchorEl={anchorElTwo}
+        onClose={handlePopoverCloseTwo}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        elevation={1}
+        style={{ borderRadius: '10px' }}
+        >
+          <div style={{ padding: '0px' }}>
+            <List style={{maxHeight: '295px', overflow: 'auto'}}>
+              <ListItemButton onClick={handleTileOne} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Base Map" />
+              </ListItemButton>
+              <ListItemButton onClick={handleTileTwo} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Topographic Map" />
+              </ListItemButton>
+              <ListItemButton onClick={handleTileThree} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Satellite Map" />
+              </ListItemButton>
+              <ListItemButton onClick={handleTileFour} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Terrain Map" />
+              </ListItemButton>
+              <ListItemButton onClick={handleTileFive} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Light Map" />
+              </ListItemButton>
+              <ListItemButton onClick={handleTileSix} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Dark Map" />
+              </ListItemButton>
+              <ListItemButton onClick={handleTileSeven} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Ocean Map" />
+              </ListItemButton>
+              <ListItemButton onClick={handleTileEight} sx={{ minWidth: 180, height: '40px' }}>
+                <ListItemText primary="Simple Map" />
+              </ListItemButton>
+            </List>
+          </div>
+        </Popover>
+      </List>
+      <Divider />
+      <List>
+        <ListItemButton aria-describedby={popoverId} onClick={handlePopover}>
           <ListItemIcon>
             <DriveFolderUploadIcon />
           </ListItemIcon>
@@ -714,7 +824,7 @@ export default function Main() {
         { width < 600 ? <Toolbar /> : <></> }
         <MapContainer center={[38.13, -120.99]} zoom={8} scrollWheelZoom={false} ref={setLeafletMap} style={{ height: `calc(100vh - 20px)`, borderRadius: '10px' }}>
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url={tileLayerUrl}
           />
           {/* uploaded pokemon */}
           { dataLoadedTwo ? uploadedPokemon.map(p => (
