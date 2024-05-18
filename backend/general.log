@@ -8093,3 +8093,5 @@ TypeError: the JSON object must be str, bytes or bytearray, not list
 2024-05-18 03:44:29,498 (WARNING)- django.request- Not Found: /favorite-uploaded-pokemon/
 2024-05-18 03:44:52,287 (INFO)- django.utils.autoreload- /app/backend/users/urls.py changed, reloading.
 2024-05-18 03:44:52,841 (INFO)- django.utils.autoreload- Watching for file changes with StatReloader
+2024-05-18 07:14:49,358 (INFO)- django.utils.autoreload- Watching for file changes with StatReloader
+2024-05-18 07:43:16,076 (WARNING)- users.views- /app/backend/users/../generated-pokemon
