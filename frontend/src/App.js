@@ -12,6 +12,8 @@ import "./App.css";
 import {useState, useEffect} from 'react';
 import axios from "axios";
 
+const base_url = 'http://localhost:8000'
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
@@ -19,7 +21,7 @@ function App() {
     const loggedInUser = localStorage.getItem("user");
     const currentToken = localStorage.getItem("token");
     if (loggedInUser) {
-      axios.get('http://localhost:8000/check-auth/', { params: { username: loggedInUser, token: currentToken }})
+      axios.get(base_url+'/check-auth/', { params: { username: loggedInUser, token: currentToken }})
       .then (res => {
         if (res.data.is_authenticated === 'true') {
           setIsAuthenticated(true)

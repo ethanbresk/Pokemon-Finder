@@ -1096,7 +1096,7 @@ export default function Main() {
       
             <Box component="section" sx={{
               paddingTop: 0,
-              
+              marginRight: '15px'
             }}>
               <img src="/pokemon-logo.png" alt="logo" width="250"/>
             </Box>
@@ -1105,7 +1105,7 @@ export default function Main() {
               width: '100%',
 
             }}>
-              <Typography sx={{ color: 'black', fontWeight: 'light', letterSpacing: 8, fontSize: "40px", display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginLeft: '15px'}}>FINDER</Typography>
+              <Typography sx={{ color: 'black', fontWeight: '400', letterSpacing: 3, fontSize: "40px", display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', marginLeft: '5px'}}>FiNDER</Typography>
               {/* <Divider sx={{ marginBottom: '15px'}} /> */}
               
             </Box>
