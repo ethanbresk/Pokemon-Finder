@@ -15,9 +15,6 @@ services:
     volumes:
       - ./data/db:/var/lib/postgresql/data/
 
-    networks:
-      - djangonetwork
-
   frontend:
     build:
       context: ./frontend
@@ -31,9 +28,6 @@ services:
 
     depends_on:
       - backend
-
-    networks:
-      - djangonetwork
 
   backend: 
     build: 
@@ -53,13 +47,3 @@ services:
 
     depends_on:
       - db
-
-    links:
-      - db:db
-
-    networks:
-        - djangonetwork
-
-networks:
-      djangonetwork:
-          driver: bridge
