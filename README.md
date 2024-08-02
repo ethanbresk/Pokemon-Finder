@@ -30,9 +30,6 @@ docker compose build
 docker compose exec backend python manage.py migrate
 ```
 
-5. Run the containers
+## Running:
 
-```bash
-docker compose up
-# note: to stop the containers, run 'docker compose down'
-```
+To run the containers, use `docker compose up` - to stop the containers use `docker compose down`
