@@ -32,4 +32,4 @@ docker compose exec backend python manage.py migrate
 
 ## Running:
 
-To run the containers, use `docker compose up` - to stop the containers use `docker compose down`
+To run the containers, use `docker compose up` and to stop the containers, use `docker compose down`
