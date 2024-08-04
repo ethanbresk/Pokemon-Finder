@@ -2,7 +2,7 @@
 
 ![172276284111726639](https://github.com/user-attachments/assets/71de3461-0846-4d7a-9d33-015b7a40ee73)
 
-This project is a full-stack React App that utilizes Django Rest Framework API. Pokémon markers are displayed dynamically on a Leaflet.js map, featuring popups with their stats.
+This project is a full-stack React App that utilizes Django Rest Framework API. Pokémon markers are displayed dynamically on a Leaflet.js map, featuring toggleable popups with their stats.
 
 ## Installation:
 
